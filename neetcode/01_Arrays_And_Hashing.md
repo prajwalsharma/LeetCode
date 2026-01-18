@@ -2,6 +2,10 @@
 
 [LeetCode URL](https://neetcode.io/problems/duplicate-integer/question?list=neetcode150)
 
+**Time Complexity**: O(N)
+
+**Space Complexity**: O(N)
+
 ```cs
 public class Solution {
     public bool ContainsDuplicate(int[] nums) {
@@ -43,6 +47,10 @@ public class Solution {
 ## 242. Valid Anagram (Easy)
 
 [LeetCode URL](https://leetcode.com/problems/valid-anagram)
+
+Time Complexity: O(N)
+
+Space Complexity: O(1)
 
 ```cs
 public class Solution {
