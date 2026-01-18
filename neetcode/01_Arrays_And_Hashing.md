@@ -1,6 +1,4 @@
-## 217. Contains Duplicate (Easy)
-
-[LeetCode URL](https://neetcode.io/problems/duplicate-integer/question?list=neetcode150)
+## [217. Contains Duplicate](https://neetcode.io/problems/duplicate-integer/question?list=neetcode150) (Easy)
 
 **Time Complexity**: O(N)
 
@@ -44,13 +42,11 @@ public class Solution {
 }
 ```
 
-## 242. Valid Anagram (Easy)
+## [242. Valid Anagram](https://leetcode.com/problems/valid-anagram) (Easy)
 
-[LeetCode URL](https://leetcode.com/problems/valid-anagram)
+**Time Complexity**: O(N)
 
-Time Complexity: O(N)
-
-Space Complexity: O(1)
+**Space Complexity**: O(1)
 
 ```cs
 public class Solution {
