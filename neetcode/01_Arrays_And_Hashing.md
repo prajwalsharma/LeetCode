@@ -1,4 +1,4 @@
-## [217. Contains Duplicate](https://neetcode.io/problems/duplicate-integer/question?list=neetcode150) (Easy)
+## 1. [Contains Duplicate](https://neetcode.io/problems/duplicate-integer/question?list=neetcode150) (Easy)
 
 **Time Complexity**: O(N)
 
@@ -42,9 +42,9 @@ public class Solution {
 }
 ```
 
-## [242. Valid Anagram](https://leetcode.com/problems/valid-anagram) (Easy)
+## 2. [Valid Anagram](https://leetcode.com/problems/valid-anagram) (Easy)
 
-**Time Complexity**: O(N)
+**Time Complexity**: O(N + M)
 
 **Space Complexity**: O(1)
 
@@ -82,6 +82,39 @@ public class Solution {
         }
 
         return true;
+    }
+}
+```
+
+## 3. [Two Sum](https://leetcode.com/problems/two-sum) (Easy)
+
+**Time Complexity**: O(N)
+
+**Space Complexity**: O(N)
+
+```cs
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+
+        var result = new int[2];
+
+        // Store visited number with it's index
+        var map = new Dictionary<int, int>();
+
+        for(int i=0; i<nums.Length; i++){
+
+            int currentNumber = nums[i];
+            int otherNumber = target - currentNumber;
+
+            // Check if other number already exists
+            if(map.ContainsKey(otherNumber)){
+                return [i, map[otherNumber]];
+            }
+            else{
+                map.TryAdd(currentNumber, i);
+            }
+        }
+        return result;
     }
 }
 ```
