@@ -14,8 +14,7 @@ public class Solution {
         // Iterate each item and add to set
         foreach(int num in nums){
 
-            // If an item already exists in set
-            // that is a duplicate
+            // If an item already exists in set, that is a duplicate
             if(set.Contains(num)){
                 return true;
             }
@@ -57,8 +56,7 @@ public class Solution {
             return false;
         }
 
-        // Create an array to store
-        // count of each character
+        // Create an array to store count of each character
         var charCountArray = new int[26];
 
         for(int i=0; i<s.Length; i++){
@@ -73,8 +71,7 @@ public class Solution {
             charCountArray[targetCharIndex] -= 1;
         }
 
-        // If all characters are equal, then
-        // this array will have all 0s
+        // If all characters are equal, then this array will have all 0s
         foreach(int i in charCountArray){
             if(i != 0){
                 return false;
