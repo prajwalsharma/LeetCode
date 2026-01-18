@@ -1,4 +1,77 @@
-## Collections
+## 1. Tips
+
+```cs
+// Convert character to ASCII
+char c = 'A';
+int ascii = (int) c;
+
+// Check if character is Digit
+char c = '8';
+bool isDigit = c.IsDigit();
+
+// Check if character is letter
+char c = 'A';
+bool isLetter = c.IsLetter();
+
+// Check if character is letter or Digit
+char c = 'A';
+bool isAlphaNumeric = c.IsLetterOrDigit();
+
+// Character Array
+var charArray = new int[26];
+
+// ASCII Range
+// a-z: 97 to 122
+// A-Z: 65 to 90
+// 0-9: 48 to 57
+```
+
+## 1. Arrays
+
+```cs
+// 1D arry
+var array = new int[5];
+
+// 2D array (matrix with fixed length)
+var multiArray = new int[3,4] {
+    {1,2,3,4},
+    {5,6,7,8},
+    {9,10,11,12}
+};
+
+// Jagged Array (variable length)
+var jagged = new int[4][] {
+    {1,2,3,4,5},
+    {6,7,8},
+    {9,10},
+    {11}
+};
+
+// Add item
+array[0] = 1;
+
+// Get item
+var item = array[0];
+var item = multiArray[0,0];
+
+// Get length
+int length = array.Length;
+
+int rows = multiArray.GetLength(0);
+int columns = multiArray.GetLength(1);
+
+// Sort array (increasing)
+Array.Sort(array);
+
+// Reverse array
+Array.Reverse(array);
+
+// Sort array (descending)
+Array.Sort(array);
+Array.Reverse(array);
+```
+
+## 2. Collections
 
 ### 1. List
 
