@@ -115,3 +115,62 @@ public class Solution {
     }
 }
 ```
+
+## 4. [Group Anagrams](https://leetcode.com/problems/group-anagrams) (Medium)
+
+**Time Complexity**: O(N \* M)
+
+**Space Complexity**: O(N \* M)
+
+N: Number Of strings
+
+M: Length of each string
+
+```cs
+public class Solution {
+    public IList<IList<string>> GroupAnagrams(string[] strs) {
+
+        var result = new List<IList<string>>();
+
+        // Create a map to store anagram groups
+        var dictionary = new Dictionary<string, List<string>>();
+
+        foreach(string s in strs){
+
+            // Get char frequency array as a string (valid immutable key)
+            string charArrayKey = GetCharArray(s);
+
+            // Check if anagram exists in dictionary
+            if(dictionary.ContainsKey(charArrayKey)){
+                var existingList = dictionary[charArrayKey];
+                existingList.Add(s);
+                dictionary[charArrayKey] = existingList;
+            }
+            // Else insert into dictionary
+            else{
+                var list = new List<string>();
+                list.Add(s);
+                dictionary.Add(charArrayKey, list);
+            }
+        }
+
+        // Store all anagram groups in the result
+        foreach(var kvp in dictionary){
+            result.Add(kvp.Value);
+        }
+
+        return result;
+
+    }
+
+    // Helper function to get char frequency array as a string
+    public static string GetCharArray(string s){
+        int[] charArray = new int[26];
+        for(int i=0; i<s.Length; i++){
+            int position = s[i] - 'a';
+            charArray[position] += 1;
+        }
+        return String.Join('-', charArray);
+    }
+}
+```
