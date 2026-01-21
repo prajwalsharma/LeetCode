@@ -174,3 +174,70 @@ public class Solution {
     }
 }
 ```
+
+## 5. [Encode and Decode Strings](https://neetcode.io/problems/string-encode-and-decode) (Medium)
+
+**Time Complexity**: O(M)
+
+**Space Complexity**: O(M + N)
+
+M: Sum of length of all strings
+
+N: Number of strings
+
+```cs
+public class Solution {
+
+    private const char uniqueIdentifier = '#';
+
+    public string Encode(IList<string> strs) {
+        var sb = new StringBuilder();
+        foreach(string s in strs){
+            sb.Append(s.Length);
+            sb.Append(uniqueIdentifier);
+            sb.Append(s);
+        }
+        return sb.ToString();
+    }
+
+    public List<string> Decode(string s) {
+
+        var result = new List<string>();
+
+        // First pointer
+        // Store starting index of string length digit
+        int i = 0;
+
+        while(i < s.Length){
+
+            // Second Pointer
+            // Store the index of '#'
+            int j = i;
+
+            // Find index of '#'
+            while(s[j] != uniqueIdentifier){
+                j++;
+            }
+
+            // Get the string length digit
+            int length = Convert.ToInt32(s.Substring(i, j-i));
+
+            // Move first pointer after '#'
+            // String decoding will start from here
+            i = j + 1;
+
+            // Get the decoded string
+            string decoded = s.Substring(i, length);
+
+            result.Add(decoded);
+
+            // Move the first pointer to process next string
+            i = i + length;
+
+        }
+
+        return result;
+   }
+}
+
+```
