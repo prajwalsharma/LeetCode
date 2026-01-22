@@ -241,3 +241,42 @@ public class Solution {
 }
 
 ```
+
+## 6. [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self) (Medium)
+
+**Time Complexity**: O(N)
+
+**Space Complexity**: O(1)
+
+```cs
+public class Solution {
+    public int[] ProductExceptSelf(int[] nums) {
+
+        var result = new int[nums.Length];
+
+        int product = 1;
+
+        // Start from right to left
+        // For each num, get product of all numbers towards it's right
+        for(int i=nums.Length-1; i>=0; i--){
+            result[i] = product;
+            product *= nums[i];
+        }
+
+        // reset the product
+        product = 1;
+
+        // Start from left to right
+        // For each number, get product of all numbers toward it's left
+        for(int i=0; i<nums.Length; i++){
+
+            // Optimization: Do the product with right array directly
+            result[i] *= product;
+            product *= nums[i];
+        }
+
+        return result;
+
+    }
+}
+```
