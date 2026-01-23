@@ -280,3 +280,71 @@ public class Solution {
     }
 }
 ```
+
+## 7. [Valid Sudoku](https://leetcode.com/problems/valid-sudoku) (Medium)
+
+**Time Complexity**: O(N^2)
+
+**Space Complexity**: O(N^2)
+
+```cs
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+
+        // Create maps to keep track of duplicate digits
+        // in each row, column & sub-box
+        var rowMap = new Dictionary<int, HashSet<char>>();
+        var colMap = new Dictionary<int, HashSet<char>>();
+        var subBoxMap = new Dictionary<int, HashSet<char>>();
+
+        // Fill the maps
+        for(int i=0; i<9; i++){
+            rowMap.TryAdd(i, new HashSet<char>());
+            colMap.TryAdd(i, new HashSet<char>());
+            subBoxMap.TryAdd(i, new HashSet<char>());
+        }
+
+        // Start visiting the digits
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+
+                // Ignore void cells
+                if(board[i][j] == '.'){
+                    continue;
+                }
+
+                int row = i;
+                int col = j;
+                int subBox = (i/3) * 3 + (j/3); // Calculate sub-box index
+                char ch = board[row][col];
+
+                // Check if digit is a duplicate in row
+                if(rowMap[row].Contains(ch)){
+                    return false;
+                }
+                else{
+                    rowMap[row].Add(ch);
+                }
+
+                // Check if digit is a duplicate in column
+                if(colMap[col].Contains(ch)){
+                    return false;
+                }
+                else{
+                    colMap[col].Add(ch);
+                }
+
+                // Check if digit is a duplicate in sub-box
+                if(subBoxMap[subBox].Contains(ch)){
+                    return false;
+                }
+                else{
+                    subBoxMap[subBox].Add(ch);
+                }
+            }
+        }
+
+        return true;
+    }
+}
+```
