@@ -348,3 +348,46 @@ public class Solution {
     }
 }
 ```
+
+## 8. [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence) (Medium)
+
+**Time Complexity**: O(N)
+
+**Space Complexity**: O(N)
+
+```cs
+public class Solution {
+    public int LongestConsecutive(int[] nums) {
+
+        int result = 0;
+
+        // Create a set using nums to remove duplicates
+        var set = new HashSet<int>(nums);
+
+        // Start iterating the set
+        foreach(int i in set){
+
+            // If number is part of existing sequence
+            // Then we can skip it
+            if(set.Contains(i-1)){
+                continue;
+            }
+
+            int longest = 1;
+            int num = i;
+
+            // Keep checking if next number is available
+            while(set.Contains(num+1)){
+                longest++;
+                num++;
+            }
+
+            // Check if this count is the longest
+            result = Math.Max(result, longest);
+        }
+
+        return result;
+
+    }
+}
+```
