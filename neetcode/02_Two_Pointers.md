@@ -38,3 +38,42 @@ public class Solution {
     }
 }
 ```
+
+## 2. [Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) (Medium)
+
+_Time Complexity_: O(N)
+
+_Space Complexity_: O(1)
+
+```cs
+public class Solution {
+    public int[] TwoSum(int[] numbers, int target) {
+        var result = new int[2];
+
+        // Create two pointers
+        int left = 0;
+        int right = numbers.Length - 1;
+
+        while(left < right){
+
+            // Get sum of elements at our two pointers
+            int sum = numbers[left] + numbers[right];
+
+            // If sum = target, return
+            if(sum == target){
+                return [left+1, right+1];
+            }
+            // If sum < target, move left pointer
+            else if(sum < target){
+                left++;
+            }
+            // If sum > target, move right pointer
+            else if(sum > target){
+                right--;
+            }
+        }
+        return result;
+    }
+}
+
+```
