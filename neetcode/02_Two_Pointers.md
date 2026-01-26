@@ -146,3 +146,47 @@ public class Solution {
 // Time Complexity: O(N^2)
 // Space Complexity: O(M) - Output array length
 ```
+
+## 4. [Container With Most Water](https://leetcode.com/problems/container-with-most-water) (Medium)
+
+**Time Complexity: O(N)**
+
+**Space Complexity: O(1)**
+
+```cs
+public class Solution {
+    public int MaxArea(int[] heights) {
+
+        int result = 0;
+
+        // Create two pointers
+        int left = 0;
+        int right = heights.Length - 1;
+
+        // Start comparing buildings
+        while(left < right){
+
+            // Get volume between our two current buildings
+            int volume = (right - left) * Math.Min(heights[left], heights[right]);
+
+            // Check and save if it's greater than previous volume
+            result = Math.Max(result, volume);
+
+            // Find the smaller building and move the pointer
+            if(heights[left] <= heights[right]){
+                left++;
+            }
+            else if(heights[right] < heights[left]){
+                right--;
+            }
+        }
+
+        return result;
+
+    }
+}
+
+// Time Complexity: O(N)
+// Space Complexity: O(1)
+
+```
