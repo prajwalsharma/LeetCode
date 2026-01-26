@@ -190,3 +190,51 @@ public class Solution {
 // Space Complexity: O(1)
 
 ```
+
+## 5. [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water) (Hard)
+
+**Time Complexity: O(N)**
+
+**Space Complexity: O(N)**
+
+```cs
+public class Solution {
+    public int Trap(int[] height) {
+
+        int result = 0;
+
+        // For each building, find & store
+        // Minimum(highest building on left, heighest building on right)
+        var smallerBuildings = new int[height.Length];
+
+        int currentMax = 0;
+
+        // For each building, find highest building on left side
+        for(int i=0; i<height.Length; i++){
+            smallerBuildings[i] = currentMax;
+            currentMax = Math.Max(currentMax, height[i]);
+        }
+
+        // Reset the count
+        currentMax = 0;
+
+        // For each building, find highest building on right side
+        for(int i=height.Length-1; i>=0; i--){
+
+            // Optimization: To avoid declaring another array
+            smallerBuildings[i] = Math.Min(currentMax, smallerBuildings[i]);
+            currentMax = Math.Max(currentMax, height[i]);
+        }
+
+        // Calculate water each building can store
+        for(int i=0; i<height.Length; i++){
+            result += Math.Max(smallerBuildings[i] - height[i], 0);
+        }
+
+        return result;
+    }
+}
+
+// Time Complexity: O(N)
+// Space Complexity: O(N)
+```
