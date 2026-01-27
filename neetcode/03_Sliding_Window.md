@@ -31,3 +31,52 @@ public class Solution {
 // Time Complexity: O(N)
 // Space Complexity: O(1)
 ```
+
+## 2. [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters) (Medium)
+
+**Time Complexity: O(N)**
+
+**Space Complexity: O(N)**
+
+```cs
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+
+        int result = 0;
+
+        // Track index of last duplicate character
+        int indexOfLastDuplicate = 0;
+
+        // To: Track duplicate characters
+        // To: Maintain sliding window of non repeating characters
+        var set = new HashSet<char>();
+
+        for(int i=0; i<s.Length; i++){
+
+            char ch = s[i];
+
+            // If character is duplicate
+            if(set.Contains(ch)){
+
+                // Remove all visited characters from set
+                // until the duplicate is removed
+                while(set.Contains(ch)){
+                    char charAtIndex = s[indexOfLastDuplicate];
+                    set.Remove(charAtIndex);
+                    indexOfLastDuplicate++;
+                }
+            }
+
+            // Add current character to set
+            set.Add(ch);
+
+            // Check if current window size is largest
+            result = Math.Max(result, set.Count);
+        }
+        return result;
+    }
+}
+
+// Time Complexity: O(N)
+// Space Complexity: O(N)
+```
