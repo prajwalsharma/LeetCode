@@ -80,3 +80,70 @@ public class Solution {
 // Time Complexity: O(N)
 // Space Complexity: O(N)
 ```
+
+## 3. [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement) (Medium)
+
+**Space Complexity: O(N)**
+
+**Time Complexity: O(1)**
+
+```cs
+public class Solution {
+    public int CharacterReplacement(string s, int k) {
+
+        int result = 0;
+
+        // Track frequency of each char
+        var map = new Dictionary<char,int>();
+
+        // Start point of our window
+        int left = 0;
+
+        // Freq of char with max frequency so far
+        int max = 0;
+
+        for(int right=0; right<s.Length; right++){
+
+            char ch = s[right];
+
+            // Add/Update frequency of current char
+            if(map.ContainsKey(ch)){
+                map[ch] += 1;
+            }
+            else{
+                map.Add(ch, 1);
+            }
+
+            // Check if current char is the one with max frequency
+            max = Math.Max(max, map[ch]);
+
+            // Get the length of our current window
+            int currentWindowLength = right - left + 1;
+
+            // Get the number of characters with low frequency
+            int charToReplace = currentWindowLength - max;
+
+            // Check if all those characters can be replaced in under K times
+            if(charToReplace <= k){
+
+                // This window is a potential solution
+                result = Math.Max(result, currentWindowLength);
+            }
+            // This window is not a potential solution
+            else{
+                // Remove the starting character from current window
+                char toRemove = s[left];
+                map[toRemove] -= 1;
+
+                // Shift the window
+                left++;
+            }
+        }
+        return result;
+
+    }
+}
+
+// Time Complexity: O(N)
+// Space Complexity: O(1)
+```
