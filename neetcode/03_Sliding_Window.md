@@ -147,3 +147,67 @@ public class Solution {
 // Time Complexity: O(N)
 // Space Complexity: O(1)
 ```
+
+## 4. [Permutation in String](https://leetcode.com/problems/permutation-in-string/) (Medium)
+
+```cs
+public class Solution {
+    public bool CheckInclusion(string s1, string s2) {
+
+        // Base case, if s2 < s1
+        if(s2.Length < s1.Length) return false;
+
+        // Define a sliding window (length = s1 length)
+        int windowStartIndex = 0;
+        int windowEndIndex = s1.Length - 1;
+
+        // Frequency map for s1
+        var s1map = new int[26];
+
+        // Frequency map for current window
+        var windowMap = new int[26];
+
+        // Store freq map for s1 & current window
+        for(int i=0; i<s1.Length; i++){
+
+            int index = s1[i] - 'a';
+            s1map[index]++;
+
+            index = s2[i] - 'a';
+            windowMap[index]++;
+        }
+
+        while(windowEndIndex < s2.Length){
+
+            // If current window is a permutation
+            if(s1map.SequenceEqual(windowMap)){
+                return true;
+            }
+            // Else slide the window
+            else{
+
+                char windowFirstChar = s2[windowStartIndex];
+                int charIndex = windowFirstChar - 'a';
+
+                // Remove window start item from freq map
+                windowMap[charIndex]--;
+
+                // Slide window by 1
+                windowStartIndex++;
+                windowEndIndex++;
+
+                // Add new window end item to the freq map
+                if(windowEndIndex < s2.Length){
+                    char windowEndChar = s2[windowEndIndex];
+                    charIndex = windowEndChar - 'a';
+                    windowMap[charIndex]++;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+// Time Complexity: O(N)
+// Space Complexity: O(1)
+```
